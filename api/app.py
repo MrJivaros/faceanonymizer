@@ -8,7 +8,7 @@ import os
 
 @app.route('/', methods=['GET'])
 def getImage():
-    return render_template('index.html')
+    return send_from_directory('../static/images', 'moi.jpg',)
 
 
 @app.route('/cache', methods=['GET'])
@@ -26,8 +26,6 @@ def fileUpload():
     filename = secure_filename(file.filename)
     destination = "/".join([target, filename])
     file.save(destination)
-    # response = send_from_directory('pictures', '/blurred/jiv.jpg')
-    print("#############@@@@@@@@@@@@@@")
     print(url_for('static', filename='moi.jpg'))
     return jsonify({
         'url': 'jivaris.com'
@@ -39,7 +37,7 @@ def staticFiles(image_name):
     print('################# path')
     root_dir = os.path.dirname(os.getcwd())
     print(root_dir)
-    return send_from_directory('./static', image_name, as_attachment=True)
+    return send_from_directory('./static/images', image_name, as_attachment=True)
 
 
 if __name__ == '__main__':
