@@ -25,3 +25,5 @@ $ python app.py
 Touch requirements file
 pip freeze > requirements.txt
 ```
+
+![alt text](https://github.com/MrJivaros/faceanonymizer/blob/main/moi.jpg?raw=true)
