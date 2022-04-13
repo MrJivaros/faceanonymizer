@@ -52,5 +52,4 @@ def staticFiles(image_name):
     return send_from_directory('./static/images', image_name, as_attachment=True)
 
 
-if __name__ == '__main__':
-    app.run(debug=True, host=HOST, port=PORT)
+
