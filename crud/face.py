@@ -11,7 +11,7 @@ class Face:
   @staticmethod
   def cachFace():
     try:
-      imagePath = originalImagesPath+"/photo.jpg"
+      imagePath = originalImagesPath+"/jiv.jpg"
       print(imagePath)
       cascPath = "./config/haarcascade_frontalface_default.xml"
       faceCascade = cv2.CascadeClassifier(cascPath)

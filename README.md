@@ -26,4 +26,8 @@ Touch requirements file
 pip freeze > requirements.txt
 ```
 
-![alt text](https://github.com/MrJivaros/faceanonymizer/blob/main/moi.jpg?raw=true)
+> init picture
+> ![alt text](https://github.com/MrJivaros/faceanonymizer/blob/main/moi.jpg?raw=true)
+
+> before traitement 😅😋🤯
+> ![alt text](https://github.com/MrJivaros/faceanonymizer/blob/main/pictures/blurred/jiv.jpg?raw=true)
