@@ -4,3 +4,5 @@ api/env
 api/config/__pycache__
 api/crud/__pycache__
 api/config/__pycache__
+api/pictures/blurred/
+api/pictures/originals/
