@@ -27,7 +27,7 @@ pip freeze > requirements.txt
 ```
 
 > init picture
-> ![alt text](https://github.com/MrJivaros/faceanonymizer/blob/main/moi.jpg?raw=true)
+> ![alt text](https://github.com/MrJivaros/faceanonymizer/blob/main/api/moi.jpg?raw=true)
 
 > before traitement 😅😋🤯
-> ![alt text](https://github.com/MrJivaros/faceanonymizer/blob/main/pictures/blurred/jiv.jpg?raw=true)
+> ![alt text](https://github.com/MrJivaros/faceanonymizer/blob/main/api/pictures/blurred/jiv.jpg?raw=true)
