@@ -1,6 +1,6 @@
 # Intelligence Artificielle mise en place d'un système intelligent d'anonymisation de visage
 
-```
+```sh
 # commandes
 
 create venv
@@ -21,4 +21,7 @@ $ python app.py
 
 ```
 
-`pip freeze > requirements.txt`
+```
+Touch requirements file
+pip freeze > requirements.txt
+```
