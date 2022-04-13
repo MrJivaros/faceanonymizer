@@ -69,7 +69,7 @@ export default function App() {
 
    <button onClick={sendImage}>send</button>
 
-   <img src='http://127.0.0.1:8086/get-image/moi.jpg' alt='' />
+   <img src='http://127.0.0.1:8086/' alt='' />
   </div>
  )
 }

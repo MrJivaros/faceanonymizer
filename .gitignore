@@ -1,3 +1,6 @@
 api/__pycache__
 api/env
 .DS_Store
+api/config/__pycache__
+api/crud/__pycache__
+api/config/__pycache__

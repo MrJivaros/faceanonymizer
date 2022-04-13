@@ -10,6 +10,7 @@ app = Flask(__name__,)
 app._static_folder = './static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
+# app.config['USE_X_SENDFILE'] = True
 
 
 app.config['CORS_HEADERS'] = 'Content-Type'
