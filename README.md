@@ -4,7 +4,7 @@
 # commandes
 
 create venv
-$ python -m venv env
+$ python3 -m venv env
 
 activate venv
 > MAC OR LINUX
