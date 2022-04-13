@@ -1,4 +1,4 @@
-#Intelligence Artificielle mise en place d'un système intelligent d'anonymisation de visage
+# Intelligence Artificielle mise en place d'un système intelligent d'anonymisation de visage
 
 ```
 # commandes
