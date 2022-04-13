@@ -1,19 +1,31 @@
-from flask import request, jsonify, send_from_directory, url_for, send_file, render_template
+from flask import redirect, request, jsonify, send_from_directory, url_for, send_file, render_template
 from flask_cors import cross_origin
-from config.config import app, UPLOAD_FOLDER
+from config.config import HOST, PORT, app, UPLOAD_FOLDER
 from crud.face import Face
 from werkzeug.utils import secure_filename
 import os
 
 
-@app.route('/', methods=['GET'])
-def getImage():
-    return send_from_directory('../static/images', 'moi.jpg',)
 
+@app.route('/', methods=['POST'])
+@cross_origin()
+def index():
+    response =  Face.faceanonymizer()
+    print('###############')
+    print(response)
+    if response['status'] == True:
+        return jsonify({
+            'status':True,
+            'url':f'http://{HOST}:{PORT}/image/{response["path"]}'
+        })
+    else:
+        return jsonify({
+            'status':False
+        })
 
-@app.route('/cache', methods=['GET'])
-def face():
-    return jsonify(Face.cachFace())
+@app.route('/image/<image_name>', methods=['GET'])
+def getImage(image_name):
+    return send_from_directory('../pictures/blurred', image_name,)
 
 
 @app.route('/saveimage', methods=['POST'])
@@ -41,4 +53,4 @@ def staticFiles(image_name):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port="8086")
+    app.run(debug=True, host=HOST, port=PORT)

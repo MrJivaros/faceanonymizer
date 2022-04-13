@@ -1,6 +1,8 @@
 import os
 from flask import Flask
 from flask_cors import CORS
+HOST= '0.0.0.0'
+PORT= '5000'
 
 UPLOAD_FOLDER = './pictures/originals'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'mp4', 'avi'])

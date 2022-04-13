@@ -1,30 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ImageUploading, { ImageListType } from 'react-images-uploading'
 import { API_URL } from './api/api'
 
+interface BlurredImage {
+ status: boolean
+ url: string
+}
+
 export default function App() {
  const [images, setImages] = React.useState<ImageListType>([])
+ const [blurredImage, setBlurredImage] = useState({
+  status: false,
+  url: ''
+ })
  const maxNumber = 69
 
  const onChange = (imageList: ImageListType, addUpdateIndex?: number[]) => {
-  // data for submit
-  console.log(imageList, addUpdateIndex)
   setImages(imageList)
  }
 
  const sendImage = async () => {
   const data = new FormData()
-  console.log(images)
-  const reader = new FileReader()
-  images[0].file?.arrayBuffer().then((res) => {
-   const blob = new Uint8Array(res)
-   let blob1 = new Blob([new Uint8Array(blob)], { type: 'image/png' })
-   data.append('file', blob1, 'Jivaros.' + images[0].file?.type.split('/')[1])
-   fetch(API_URL + '/saveimage', {
-    method: 'POST',
-    body: data
-   }).then(console.log)
-  })
+  const arrayBuffer = await images[0].file?.arrayBuffer()
+  const fileType = images[0].file?.type.split('/')[1]
+  const fileName = images[0].file?.name
+  if (arrayBuffer && fileType && fileName) {
+   const uint8Array = new Uint8Array(arrayBuffer)
+   const blod = new Blob([new Uint8Array(uint8Array)], {
+    type: 'image/' + fileType
+   })
+   data.append('file', blod, fileName)
+   const response: BlurredImage = await (
+    await fetch(API_URL, {
+     method: 'POST',
+     body: data
+    })
+   ).json()
+
+   setBlurredImage(response)
+  }
  }
 
  return (
@@ -68,8 +82,7 @@ export default function App() {
    </ImageUploading>
 
    <button onClick={sendImage}>send</button>
-
-   <img src='http://127.0.0.1:8086/' alt='' />
+   {blurredImage.status && <img src={blurredImage.url} alt='' />}
   </div>
  )
 }

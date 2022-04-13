@@ -1,9 +1,12 @@
+import os
 from pickle import TRUE
+from config.config import UPLOAD_FOLDER
 import cv2
-from flask import request
+from flask import jsonify, request, url_for
 from crud.utils import generatePictureName
-originalImagesPath = './pictures/originals'
+originalImagesPath = './pictures/originals/'
 blurredImagesPath = './pictures/blurred/'
+from werkzeug.utils import secure_filename
 
 
 class Face:
@@ -11,22 +14,29 @@ class Face:
     def hello():
         return 'hello world'
 
-    def saveImage():
-        data = request.form['image']
-        type = request.form['type']
-
-        saveImagePath = blurredImagesPath + \
-            'picture{id}.{type}'.format(id=generatePictureName(), type=type)
-
-        cv2.imwrite(saveImagePath, data)
-        return {
-            'status': TRUE,
-        }
+    def saveImage(self):
+      target = os.path.join(UPLOAD_FOLDER)
+      if not os.path.isdir(target):
+          os.mkdir(target)
+      file = request.files['file']
+      originName = secure_filename(file.filename)
+      type = originName.split('.')[1]
+      print("################### type")
+      print(type)
+      filename = f'picture-{generatePictureName()}.{type}'
+      destination = "/".join([target, filename])
+      file.save(destination)
+      return filename
 
     @staticmethod
-    def cachFace():
+    def faceanonymizer():
+      filename =  Face().saveImage()
+      caheFaceResponse = Face().cachFace(filename)
+      return caheFaceResponse
+
+    def cachFace(self, filename):
         try:
-            imagePath = originalImagesPath+"/jiv.jpg"
+            imagePath = originalImagesPath+filename
             print(imagePath)
             cascPath = "./config/haarcascade_frontalface_default.xml"
             faceCascade = cv2.CascadeClassifier(cascPath)
@@ -50,15 +60,15 @@ class Face:
                 roi = cv2.GaussianBlur(roi, (101, 101), 30)
                 image[y:y+roi.shape[0], x:x+roi.shape[1]] = roi
 
-            saveImagePath = blurredImagesPath + \
-                'picture{id}.jpg'.format(id=generatePictureName())
+            saveImagePath = blurredImagesPath + filename
             cv2.imwrite(saveImagePath, image)
 
             return {
-                'status': True,
-                'url': saveImagePath
+              'status': True,
+              'path':filename
             }
         except:
             return {
-                'status': False,
+              'status':False,
+              'path': ''
             }
