@@ -51,5 +51,8 @@ def staticFiles(image_name):
         "status": True
     })
 
+if __name__ == '__main__':
+    app.run()
+
 
 
