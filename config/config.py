@@ -16,8 +16,4 @@ app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
 
 app.config['CORS_HEADERS'] = 'Content-Type'
-CORS(app, resources={
-    r'/*': {
-        'origins': '*'
-    }
-})
+CORS(app)

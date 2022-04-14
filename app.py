@@ -44,12 +44,12 @@ def fileUpload():
     })
 
 
-@app.route('/get-image/<image_name>',  methods=['GET'])
+@app.route('/test',  methods=['GET'])
+@cross_origin()
 def staticFiles(image_name):
-    print('################# path')
-    root_dir = os.path.dirname(os.getcwd())
-    print(root_dir)
-    return send_from_directory('./static/images', image_name, as_attachment=True)
+    return jsonify({
+        "status": True
+    })
 
 
 
