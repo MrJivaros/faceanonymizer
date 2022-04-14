@@ -5,9 +5,7 @@ from crud.face import Face
 from werkzeug.utils import secure_filename
 import os
 
-
-
-@app.route('/', methods=['POST'])
+@app.route('/ia', methods=['POST'])
 @cross_origin()
 def index():
     response =  Face.faceanonymizer()
@@ -46,13 +44,11 @@ def fileUpload():
 
 @app.route('/test',  methods=['GET'])
 @cross_origin()
-def staticFiles(image_name):
+def staticFiles():
     return jsonify({
         "status": True
     })
 
-if __name__ == '__main__':
-    app.run()
 
 
 
